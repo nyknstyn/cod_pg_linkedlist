@@ -33,11 +33,6 @@ public class GetNthNode {
         Integer value = getNthNode.getNthNode(linkedList, 2);
         System.out.println(value);
 
-        LinkedList<Integer> linkedList1 = new LinkedList<>();
-        linkedList.append(1);
-        linkedList.append(2);
-        linkedList.append(3);
-        linkedList.insertAfter(2,4);
-        linkedList.actionOnTraverse(System.out::println);
+
     }
 }

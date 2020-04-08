@@ -65,18 +65,10 @@ public class LinkedList<T> {
     public void insertAfter(T refData, T data){
         Node<T> newNode = new Node<T>(data);
         Node<T> pointer = this.head;
-        if(pointer==null){
-            return;
-        }
-        if(pointer.getData() == refData){
-            newNode.setNext(pointer.getNext());
-            pointer.setNext(newNode);
-            return;
-        }
-        while(pointer.getNext()!=null){
-            if(pointer.getNext().getData()==refData){
-                newNode.setNext(pointer.getNext().getNext());
-                pointer.getNext().setNext(newNode);
+        while(pointer!=null){
+            if(pointer.getData()==refData){
+                newNode.setNext(pointer.getNext());
+                pointer.setNext(newNode);
             }
             pointer = pointer.getNext();
         }
@@ -189,5 +181,14 @@ public class LinkedList<T> {
         list.actionOnTraverse(System.out::println);
         list.deleteNodeAtPosition(3);
         list.actionOnTraverse(System.out::println);
+
+        //InsertAfter
+        LinkedList<Integer> linkedList1 = new LinkedList<>();
+        linkedList1.append(1);
+        linkedList1.append(2);
+        linkedList1.append(3);
+        linkedList1.actionOnTraverse(System.out::println);
+        linkedList1.insertAfter(3,4);
+        linkedList1.actionOnTraverse(System.out::println);
     }
 }
