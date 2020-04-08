@@ -12,7 +12,24 @@ public class LinkedList<T> {
     Node<T> head;
 
     static class Node<T> {
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+
         private T data;
+
+        public Node<T> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
+
         private Node<T> next;
 
         Node(T data){
@@ -25,6 +42,10 @@ public class LinkedList<T> {
         Node<T> newNode = new Node<T>(data);
         newNode.next = this.head;
         this.head = newNode;
+    }
+
+    public void deleteList(){
+        this.head = null;
     }
 
     public void append(T data){
@@ -41,9 +62,24 @@ public class LinkedList<T> {
     }
 
 
-    public void insertAfter(T data){
+    public void insertAfter(T refData, T data){
         Node<T> newNode = new Node<T>(data);
-
+        Node<T> pointer = this.head;
+        if(pointer==null){
+            return;
+        }
+        if(pointer.getData() == refData){
+            newNode.setNext(pointer.getNext());
+            pointer.setNext(newNode);
+            return;
+        }
+        while(pointer.getNext()!=null){
+            if(pointer.getNext().getData()==refData){
+                newNode.setNext(pointer.getNext().getNext());
+                pointer.getNext().setNext(newNode);
+            }
+            pointer = pointer.getNext();
+        }
     }
 
     public void printList(){
@@ -97,6 +133,50 @@ public class LinkedList<T> {
             function.accept(pointer.data);
             pointer = pointer.next;
         }
+    }
+
+    public boolean searchData(T data){
+        if(this.head==null){
+            return false;
+        }
+        Node pointer = this.head;
+        while(pointer!=null){
+            if(pointer.data == data){
+                return true;
+            }
+            pointer = pointer.next;
+        }
+        return false;
+    }
+
+    public boolean searchData(Node pointer, T data){
+        if(pointer==null){
+            return false;
+        }
+        if(pointer.data==data){
+            return true;
+        }
+        return searchData(pointer.next, data);
+    }
+
+    public int countElements(){
+        Node pointer = this.head;
+        int length = 0;
+        while (pointer!=null){
+            length ++;
+            pointer = pointer.next;
+        }
+        return length;
+
+        //For recursive call
+        //return recursiveLength(pointer);
+    }
+
+    private int recursiveLength(Node pointer){
+        if(pointer==null){
+            return 0;
+        }
+        return 1 + recursiveLength(pointer.next);
     }
 
     public static void main(String[] args) {
