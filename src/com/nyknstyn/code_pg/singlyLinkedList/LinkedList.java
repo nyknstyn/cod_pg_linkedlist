@@ -9,7 +9,15 @@ import java.util.function.Consumer;
 
 public class LinkedList<T> {
 
-    Node<T> head;
+    public Node<T> getHead() {
+        return head;
+    }
+
+    public void setHead(Node<T> head) {
+        this.head = head;
+    }
+
+    private Node<T> head;
 
     static class Node<T> {
         public T getData() {
@@ -38,6 +46,7 @@ public class LinkedList<T> {
         }
     }
 
+    //Add at Beginning
     public void push(T data){
         Node<T> newNode = new Node<T>(data);
         newNode.next = this.head;
@@ -48,6 +57,7 @@ public class LinkedList<T> {
         this.head = null;
     }
 
+    //Add at End
     public void append(T data){
         Node<T> newNode = new Node<T>(data);
         if(this.head == null){
