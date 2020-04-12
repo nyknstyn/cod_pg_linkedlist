@@ -71,7 +71,7 @@ public class MiddleNode {
         linkedList.append(9);
         linkedList.append(23);
         linkedList.append(12);
-//        linkedList.append(100);
+        linkedList.append(100);
 
         MiddleNode middleNode = new MiddleNode();
         System.out.println(middleNode.getMiddleNodeUsingMiddleNode(linkedList));
